@@ -27,6 +27,7 @@ class mac_app_devops_demoUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        XCTAssert(XCUIApplication().windows.staticTexts["Hello, World!"].exists)
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
