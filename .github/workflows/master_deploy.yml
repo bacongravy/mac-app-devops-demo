@@ -48,7 +48,7 @@ jobs:
       - name: Build and test app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
-          xcodebuild -scheme "$SCHEME" test | xcpretty
+          xcodebuild -scheme "$SCHEME" test
 
       - name: Build and install app
         shell: bash --noprofile --norc -eo pipefail {0}
