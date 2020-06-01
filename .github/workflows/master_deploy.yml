@@ -48,12 +48,12 @@ jobs:
       - name: Build and test app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
-          xcodebuild -scheme "$SCHEME" test CODE_SIGN_IDENTITY=-
+          xcodebuild -scheme "$SCHEME" test CODE_SIGN_IDENTITY=- | xcpretty
 
       - name: Build and install app
         shell: bash --noprofile --norc -eo pipefail {0}
         run: |
-          xcodebuild -scheme "$SCHEME" install DSTROOT=build/root
+          xcodebuild -scheme "$SCHEME" install DSTROOT=build/root | xcpretty
 
       - name: Package app
         run: |
