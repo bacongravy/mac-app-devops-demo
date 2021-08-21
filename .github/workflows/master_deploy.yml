@@ -14,12 +14,12 @@ jobs:
 
       - name: Find first scheme of default project
         run: |
-          echo "::set-env name=SCHEME::$(xcodebuild -list -json | jq -r '.project.schemes[0]')"
+          echo "SCHEME=$(xcodebuild -list -json | jq -r '.project.schemes[0]')" >> $GITHUB_ENV
           
       - name: Set environment variables from project settings
         run: |
           function set-env-from-proj { 
-            echo "::set-env name=$1::$(xcodebuild -scheme "$SCHEME" -showBuildSettings | grep " $1 " | sed "s/[ ]*$1 = //")"
+            echo "$1=$(xcodebuild -scheme "$SCHEME" -showBuildSettings | grep " $1 " | sed "s/[ ]*$1 = //")" >> $GITHUB_ENV
           }
           set-env-from-proj FULL_PRODUCT_NAME
           set-env-from-proj INSTALL_PATH
